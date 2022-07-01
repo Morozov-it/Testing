@@ -11,7 +11,7 @@ describe('square', () => {
 
     //выполняется перед каждым тестом
     beforeEach(() => { 
-        mockValue = Math.random
+        // mockValue = Math.random
     })
 
     test('Корректное значение', () => { //в одном тесте много вариантов
@@ -20,15 +20,20 @@ describe('square', () => {
         expect(square(2)).toBeGreaterThan(3)
         expect(square(2)).not.toBeUndefined()
     })
+    test('Количество вызовов', () => { 
+        const spyMathPow = jest.spyOn(Math, 'pow') // создание моковой функции
+        square(2)
+        expect(spyMathPow).toBeCalledTimes(1) // регистрируется количество вызовов функции (метода)
+    })
 
     //выполняется один раз после всех тестов
     afterAll(() => { 
-        //......удалить из бд
+        jest.clearAllMocks() // очистка всех моков после каждого теста
     })
 
     //выполняется после каждого теста
     afterEach(() => { 
-        mockValue = Math.random
+        // mockValue = Math.random
     })
 
 })
