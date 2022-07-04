@@ -1,7 +1,7 @@
 import { screen } from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
 import axios from 'axios'
-import { renderWithRouter } from '../../helpers/renderWithRouter'
+import renderWithAll from '../../helpers/tests/renderWithAll'
 import serverData from './serverData'
 import Users from './Users'
 
@@ -22,14 +22,14 @@ describe('Users test', () => {
     })
 
     test('Инициализация списка', async () => {
-        renderWithRouter(<Users />)
+        renderWithAll(<Users />)
         const users = await screen.findAllByTestId('user-item') //отрисовка элементов списка асинхронно через useEffect
         expect(users.length).toBe(2)
         expect(axios.get).toBeCalledTimes(1)
     })
 
     test('редирект на страницу пользователя', async () => {
-        renderWithRouter(<Users />) //т.к. в компоненте Users нет ссылок для перехода как в App
+        renderWithAll(<Users />)
         const users = await screen.findAllByTestId('user-item')
         expect(users.length).toBe(2)
         userEvent.click(users[0])

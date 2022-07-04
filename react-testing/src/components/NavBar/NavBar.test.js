@@ -1,11 +1,11 @@
 import { screen } from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
-import { renderWithRouter } from '../../helpers/tests/renderWithRouter'
+import renderWithAll from '../../helpers/tests/renderWithAll'
 import NavBar from './NavBar'
 
 describe('NavBar test', () => {
-    test('test main link', async () => {
-        renderWithRouter(<NavBar />)
+    test('main link', async () => {
+        renderWithAll(<NavBar />)
         //получение элементов ссылок
         const mainLink = screen.getByTestId('main-link')
         //включение события клик на ссылку
@@ -14,8 +14,8 @@ describe('NavBar test', () => {
         expect(screen.getByTestId('main-page')).toBeInTheDocument()
     })
 
-    test('test about link', async () => {
-        renderWithRouter(<NavBar />)
+    test('about link', async () => {
+        renderWithAll(<NavBar />)
         //получение элементов ссылок
         const aboutLink = screen.getByTestId('about-link')
         //включение события клик на ссылку
@@ -24,8 +24,8 @@ describe('NavBar test', () => {
         expect(screen.getByTestId('about-page')).toBeInTheDocument()
     })
 
-    test('test users link', async () => {
-        renderWithRouter(<NavBar />)
+    test('users link', async () => {
+        renderWithAll(<NavBar />)
         //получение элементов ссылок
         const usersLink = screen.getByTestId('users-link')
         //включение события клик на ссылку
@@ -35,7 +35,7 @@ describe('NavBar test', () => {
     })
 
     test('error-router', async () => {
-        renderWithRouter(<NavBar />, '/123')
+        renderWithAll(<NavBar />, { initialRouter: '/123'})
         expect(screen.getByTestId('error-page')).toBeInTheDocument()
     })
 })
