@@ -1,6 +1,6 @@
 import { screen } from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
-import { renderWithRouter } from '../helpers/renderWithRouter'
+import { renderWithRouter } from '../../helpers/tests/renderWithRouter'
 import NavBar from './NavBar'
 
 describe('NavBar test', () => {
@@ -32,5 +32,10 @@ describe('NavBar test', () => {
         userEvent.click(usersLink)
         //переход на компонент с элементом
         expect(screen.getByTestId('users-page')).toBeInTheDocument()
+    })
+
+    test('error-router', async () => {
+        renderWithRouter(<NavBar />, '/123')
+        expect(screen.getByTestId('error-page')).toBeInTheDocument()
     })
 })
