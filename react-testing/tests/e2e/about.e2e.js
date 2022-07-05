@@ -29,6 +29,6 @@ describe('About page', () => {
 
 
 // запустить e2e тест
-// npm run wdio --spec about.e2e.js
+// npx wdio run ./wdio.conf.js --spec about.e2e.js
 
 

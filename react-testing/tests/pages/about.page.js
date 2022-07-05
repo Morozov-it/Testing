@@ -14,10 +14,6 @@ class AboutPage extends Page {
         return $('#hello');
     }
 
-    // get usersItems () {
-    //     return browser.react$$('User') // получение массива реакт-компонент
-    // }
-
     async toggleTitleWithInput(text) {
         await this.input.setValue(text)
         await this.toggleBtn.click()
